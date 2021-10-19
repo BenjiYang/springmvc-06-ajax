@@ -20,8 +20,7 @@ public class AjaxController {
     @RequestMapping("/a1")
     public void a1(String name, HttpServletResponse response) throws IOException {
         System.out.println("b:param=>" + name);
-        if ("kuangshen".equals(name))
-        {
+        if ("kuangshen".equals(name)) {
             response.getWriter().print("input matched");
         } else {
             response.getWriter().print("input unmatched");
@@ -38,5 +37,25 @@ public class AjaxController {
         return userList;
     }
 
-
+    @RequestMapping("/login")
+    public String login(String username, String password) {
+        String msg = "";
+        if (username != null) {
+            // admin 这些数据应该从数据库中查，此处hardcoded，demo用
+            if ("admin".equals(username)) {
+                msg = "用户名正确";
+            } else {
+                msg = "用户名有误";
+            }
+        }
+        if (password != null) {
+            // admin 这些数据应该从数据库中查，此处hardcoded，demo用
+            if ("123456".equals(password)) {
+                msg = "密码正确";
+            } else {
+                msg = "密码有误";
+            }
+        }
+        return msg;
+    }
 }
